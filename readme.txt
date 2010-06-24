@@ -7,7 +7,7 @@ Copyright (C) 2010 Vaclav Bohac <bohac.v@gmail.com>
     $ tar -xjvf latte.tar.bz2
     
     - copy the lang file to lang-specs
-    $ cp ./latte/src/latte.lang ~/.local/share/gtksourceview-2.0/lang-specs/
+    $ cp ./latte/src/latte.lang ~/.local/share/gtksourceview-2.0/language-specs/
     
     - start/restart gedit
     $ gedit
