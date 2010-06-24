@@ -1,0 +1,126 @@
+{**
+ *  Latte template test file
+ *
+ *  @author     Vaclav Bohac
+ *  @version    1.0
+ *  @licence    GNU/GPLv2
+ *}
+
+{**
+ * Basic usage example
+ *}
+
+<!-- this is comment to --> 
+{block #content}
+    <div id="content">
+        {foreach $posts->getPost() as $post}
+            <div class="post">
+
+                <h3>{$post->title}</h3>
+
+                <div class="perex">
+                    {$post->perex}
+                </div>
+
+                {if $author}
+                    {$post->author}
+                {elseif $category}
+                    {$category}
+                {else}
+                    {$date|format_date}
+                {/if}
+            </div>
+        {/foreach}
+        
+        <?php
+            
+            function foo ($bar)
+            {
+                echo $bar;
+            }
+            
+            $var = 'Hello World';            
+            foo($var);
+            
+            $object->method();
+        ?>
+    </div>
+{/block}
+
+{snippet:basket}
+<div n="if:isset($var)">
+    {$var|date}
+</div>
+{/snippet}
+
+
+{**
+ * Widgets
+ *}
+
+{widget MyForm}
+
+{widget MyForm begin: 'One', 'Two', 'Three', 4}
+
+{** 
+ * Linking 
+ *}
+
+{* link to presenter *}
+<a href="{link Homepage:Default}">Home</a>
+
+{plink Homepage:default, $variable => 'blue'}
+{* ajax request *}
+
+<script type="text/javascript">
+        
+    $('selector').click(function () {
+        $.getJSON({link remove!}, {'key' : value}, function (payload) {
+            $.each(payload.snippets, function (index, data) {
+                $('#' + index).html(data);
+            });
+        });
+        return false;
+    });
+
+</script>
+
+
+{**
+ * jQuery support
+ *}
+<script>
+   $('document').ready(function () {
+        $.fn.fancybox.stop();
+        
+        {$var}
+        $.fn
+   });
+</script>
+
+{**
+ * CSS support
+ *}
+ 
+<style>
+    /**
+     * Comment in CSS
+     */
+    .shorter {
+        width: 50px !important;
+    }
+</style>
+
+<style type="text/css">
+    #box {
+        padding: 100px;
+    }
+    
+    .header {
+        position: relative;
+        margin: 0; padding: 0;
+        width:  200px;
+        height: 200px;
+        border: 1px solid #cacaca;
+    }
+</style>
