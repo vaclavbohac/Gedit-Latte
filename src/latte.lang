@@ -22,7 +22,7 @@
 <language id="latte" _name="Latte" version="2.0" _section="Markup">
 
   <metadata>
-    <property name="mimetypes">text/html</property>
+    <property name="mimetypes">text/plain</property>
     <property name="globs">*.phtml</property>
     <property name="block-comment-start">&lt;!--</property>
     <property name="block-comment-end">--&gt;</property>
@@ -40,7 +40,7 @@
   </styles>
   
   <definitions>
-    <context id="nette">
+    <context id="latte">
       <include>
       
         <!-- Comments --> 
@@ -74,6 +74,7 @@
           <keyword>while</keyword>
           <keyword>link</keyword>
           <keyword>plink</keyword>
+          <keyword>snippet</keyword>
         </context>
         
         <context id="flow-control-closing">
@@ -85,16 +86,6 @@
         </context>
 
         <!-- Variables -->
-        <context id="variables" style-ref="variable">
-          <start>\{\$[a-zA-Z][a-zA-Z]+</start>
-          <end>\}</end>
-          <include>
-            <context ref="php:operators" />
-            <context ref="pipe" />
-            <context ref="php:identifier" style-ref="identifier" />
-          </include>
-        </context>
-
         <context id="variables-in-flow-control">
           <match>(\$|\#)[a-zA-Z]+</match>
         </context>
@@ -103,47 +94,33 @@
           <match>\#[a-zA-Z]+</match>
         </context>
         
-        <!-- Links & Widgets -->
-        <context id="link" style-ref="keyword">
-          <start>\{(link|plink|widget|snippet)\s+</start>
-          <end>\}</end>
-          <include>
-            <context ref="flow-control" style-ref="keyword" />
-            <context ref="flow-control-closing" style-ref="keyword" />
-            <context ref="variables" style-ref="variable" />
-            <context ref="variables-in-flow-control" style-ref="variable" />
-            <context ref="php:identifier" style-ref="identifier" />
-            <context ref="hash-identifier" />
-            <context ref="php:operators" />
-            <context ref="php:variable" />
-            <context ref="php:single-quoted-string" />
-            <context ref="php:double-quoted-string" />
-          </include>
-        </context>
-       
+        <!-- Operators -->
         <context id="pipe">
           <match>\|</match>
         </context>
         
         <!-- Latte Block -->
         <context id="latte-block">
-          <start>\{[a-zA-Z\/]+</start>
+	  <start>(\{)([\!\=\_\/]*)((link|plink|block|include|widget|control|snippet|if|elseif|else|foreach|for)|(\$[a-z]+))</start>
           <end>\}</end>
           <include>
+            <context sub-pattern="1" where="start" style-ref="operator"/>
+	    <context sub-pattern="2" where="start" style-ref="operator" />
+	    <context sub-pattern="4" where="start" style-ref="keyword" />
+            <context sub-pattern="3" where="start" style-ref="variable" />
+            <context sub-pattern="0" where="end" style-ref="operator"/>
             <context ref="pipe" style-ref="operator" />
-            <context sub-pattern="0" where="start" style-ref="keyword"/>
-            <context sub-pattern="0" where="end" style-ref="keyword"/>
             <context ref="flow-control" style-ref="keyword" />
             <context ref="flow-control-closing" style-ref="keyword" />
-            <context ref="variables" />
+            <context ref="variables-in-flow-control" style-ref="variable"/>
             <context ref="hash-identifier" />
             <context ref="php:operators" />
             <context ref="php:variable" />
             <context ref="php:single-quoted-string" />
             <context ref="php:double-quoted-string" />
           </include>
-        </context>        
-
+        </context>   
+        
         <!-- jQuery improvements -->
         <context id="jquery-improvements">
           <start>&lt;\s*script\%]</start>
@@ -158,7 +135,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context ref="js:js"/>
-                <context ref="variables" />
+                <context ref="latte:latte-block" />
                 
                 <!-- jQuery -->
                 <context id="jquery" style-ref="function">
@@ -193,7 +170,7 @@
                     <keyword>each</keyword>
                 </context>
                 
-                <context ref="link" />
+                <!-- <context ref="link" /> -->
 
               </include>
             </context>
