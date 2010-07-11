@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="latte">
+  <snippet>
+    <text><![CDATA[{block $1}
+	$0
+{/block}]]></text>
+    <tag>block</tag>
+    <description>block</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{foreach ${1:$array} as ${2:$item}}
+	$0{${2}}
+{/foreach}
+]]></text>
+    <tag>foreach</tag>
+    <description>foreach</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{if isset($1)}
+	{foreach $1 as ${2:$item}}
+		$0{${2}}
+	{/foreach}
+{else}
+	${3:<p>No items found.</p>}
+{/if}]]></text>
+    <tag>foreachelse</tag>
+    <description>foreachelse</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{if $1}
+	$0
+{/if}
+]]></text>
+    <tag>if</tag>
+    <description>if</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{if $1}
+	$2
+{else}
+	$3
+{/if}
+$0]]></text>
+    <tag>ifel</tag>
+    <description>if-else</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{link $1:$2}$0]]></text>
+    <tag>link</tag>
+    <description>link</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{plink $1:$2}$0]]></text>
+    <tag>plink</tag>
+    <description>plink</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{snippet:$1}
+	$0
+{/snippet}
+]]></text>
+    <tag>snippet</tag>
+    <description>snippet</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{block $1}
+	$0
+{/block}]]></text>
+    <tag>block</tag>
+    <description>block</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{foreach ${1:$array} as ${2:$item}}
+	$0{${2}}
+{/foreach}
+]]></text>
+    <tag>foreach</tag>
+    <description>foreach</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{if isset($1)}
+	{foreach $1 as ${2:$item}}
+		$0{${2}}
+	{/foreach}
+{else}
+	${3:<p>No items found.</p>}
+{/if}]]></text>
+    <tag>foreachelse</tag>
+    <description>foreachelse</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{if $1}
+	$0
+{/if}
+]]></text>
+    <tag>if</tag>
+    <description>if</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{if $1}
+	$2
+{else}
+	$3
+{/if}
+$0]]></text>
+    <tag>ifel</tag>
+    <description>if-else</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{link $1:$2}$0]]></text>
+    <tag>link</tag>
+    <description>link</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{plink $1:$2}$0]]></text>
+    <tag>plink</tag>
+    <description>plink</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[{snippet:$1}
+	$0
+{/snippet}
+]]></text>
+    <tag>snippet</tag>
+    <description>snippet</description>
+  </snippet>
+</snippets>
