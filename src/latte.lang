@@ -101,13 +101,13 @@
         
         <!-- Latte Block -->
         <context id="latte-block">
-	  <start>(\{)([\!\=\_\/]*)((link|plink|block|include|widget|control|snippet|if|elseif|else|foreach|for)|(\$[a-z]+))</start>
+	  <start>(\{)([\!\=\_\/]*)((link|plink|block|include|widget|control|snippet|if|elseif|else|foreach|for)|(\$[a-zA-Z]+))</start>
           <end>\}</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="operator"/>
-	    <context sub-pattern="2" where="start" style-ref="operator" />
-	    <context sub-pattern="4" where="start" style-ref="keyword" />
+            <context sub-pattern="2" where="start" style-ref="operator" />
             <context sub-pattern="3" where="start" style-ref="variable" />
+            <context sub-pattern="4" where="start" style-ref="keyword" />
             <context sub-pattern="0" where="end" style-ref="operator"/>
             <context ref="pipe" style-ref="operator" />
             <context ref="flow-control" style-ref="keyword" />
