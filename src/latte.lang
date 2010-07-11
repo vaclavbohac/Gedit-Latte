@@ -101,7 +101,7 @@
         
         <!-- Latte Block -->
         <context id="latte-block">
-	  <start>(\{)([\!\=\_\/]*)((link|plink|block|include|widget|control|snippet|if|elseif|else|foreach|for)|(\$[a-zA-Z]+))</start>
+          <start>(\{)([\!\=\_\/]*)((link|plink|block|include|widget|control|snippet|if|elseif|else|foreach|for)|(\$[a-zA-Z]+))</start>
           <end>\}</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="operator"/>
@@ -169,9 +169,6 @@
                     <keyword>getJSON</keyword>
                     <keyword>each</keyword>
                 </context>
-                
-                <!-- <context ref="link" /> -->
-
               </include>
             </context>
             <context ref="php:single-quoted-string" />
@@ -200,8 +197,7 @@
         
         <context ref="html:html" />
         <context ref="php:php-block" />
-        <context ref="html:script" />
-        
+        <context ref="html:script" />    
       </include>
     </context>
   </definitions>
